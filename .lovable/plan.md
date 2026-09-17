@@ -10,6 +10,13 @@ Nova plataforma que conecta pessoas que querem ajudar a ONGs, projetos sociais e
 - Organizações: lista pública com selo de verificada.
 - Perfil público de organização e perfil público de voluntário.
 - Impacto: números da plataforma, com aviso claro de "dados demonstrativos" enquanto não houver volume real.
+- Quem nós somos: história e propósito do projeto, como a plataforma funciona, quem está por trás (equipe com foto, nome e função) e uma galeria interativa de visitas às ONGs.
+
+**Galeria de visitas (na aba "Quem nós somos")**
+- Carrossel navegável por setas, arraste no celular e teclado, com miniaturas abaixo.
+- Cada foto tem legenda com nome da ONG, cidade e data.
+- Clique abre a imagem ampliada em tela cheia, com avanço entre fotos.
+- As imagens ficam guardadas no armazenamento da plataforma e a lista vem do banco, então administradores podem adicionar novas visitas depois sem mexer no código. Na primeira entrega entram imagens de exemplo identificadas como demonstração até você me enviar as fotos reais da equipe.
 
 **Contas e acesso**
 - Cadastro e entrada por e-mail e senha, e também com conta Google.
