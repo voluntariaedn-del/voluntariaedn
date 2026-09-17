@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as OportunidadesRouteImport } from './routes/oportunidades'
+import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
+import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
+  id: '/como-funciona',
+  path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OportunidadesRoute = OportunidadesRouteImport.update({
+  id: '/oportunidades',
+  path: '/oportunidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizacoesIndexRoute = OrganizacoesIndexRouteImport.update({
+  id: '/organizacoes/',
+  path: '/organizacoes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizacoesSlugRoute = OrganizacoesSlugRouteImport.update({
+  id: '/organizacoes/$slug',
+  path: '/organizacoes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/oportunidades': typeof OportunidadesRoute
+  '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/organizacoes/': typeof OrganizacoesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/oportunidades': typeof OportunidadesRoute
+  '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/organizacoes': typeof OrganizacoesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/oportunidades': typeof OportunidadesRoute
+  '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/organizacoes/': typeof OrganizacoesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/como-funciona'
+    | '/oportunidades'
+    | '/organizacoes/$slug'
+    | '/organizacoes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/como-funciona'
+    | '/oportunidades'
+    | '/organizacoes/$slug'
+    | '/organizacoes'
+  id:
+    | '__root__'
+    | '/'
+    | '/como-funciona'
+    | '/oportunidades'
+    | '/organizacoes/$slug'
+    | '/organizacoes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComoFuncionaRoute: typeof ComoFuncionaRoute
+  OportunidadesRoute: typeof OportunidadesRoute
+  OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
+  OrganizacoesIndexRoute: typeof OrganizacoesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/como-funciona': {
+      id: '/como-funciona'
+      path: '/como-funciona'
+      fullPath: '/como-funciona'
+      preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/oportunidades': {
+      id: '/oportunidades'
+      path: '/oportunidades'
+      fullPath: '/oportunidades'
+      preLoaderRoute: typeof OportunidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organizacoes/': {
+      id: '/organizacoes/'
+      path: '/organizacoes'
+      fullPath: '/organizacoes/'
+      preLoaderRoute: typeof OrganizacoesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organizacoes/$slug': {
+      id: '/organizacoes/$slug'
+      path: '/organizacoes/$slug'
+      fullPath: '/organizacoes/$slug'
+      preLoaderRoute: typeof OrganizacoesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComoFuncionaRoute: ComoFuncionaRoute,
+  OportunidadesRoute: OportunidadesRoute,
+  OrganizacoesSlugRoute: OrganizacoesSlugRoute,
+  OrganizacoesIndexRoute: OrganizacoesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
