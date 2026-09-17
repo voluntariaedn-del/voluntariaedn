@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as ImpactoRouteImport } from './routes/impacto'
 import { Route as OportunidadesRouteImport } from './routes/oportunidades'
 import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
 import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
@@ -20,9 +22,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactoRoute = ImpactoRouteImport.update({
+  id: '/impacto',
+  path: '/impacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OportunidadesRoute = OportunidadesRouteImport.update({
@@ -43,14 +55,18 @@ const OrganizacoesSlugRoute = OrganizacoesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/organizacoes': typeof OrganizacoesIndexRoute
@@ -58,7 +74,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
@@ -67,21 +85,27 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/como-funciona'
+    | '/impacto'
     | '/oportunidades'
     | '/organizacoes/$slug'
     | '/organizacoes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/como-funciona'
+    | '/impacto'
     | '/oportunidades'
     | '/organizacoes/$slug'
     | '/organizacoes'
   id:
     | '__root__'
     | '/'
+    | '/auth'
     | '/como-funciona'
+    | '/impacto'
     | '/oportunidades'
     | '/organizacoes/$slug'
     | '/organizacoes/'
@@ -89,7 +113,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
+  ImpactoRoute: typeof ImpactoRoute
   OportunidadesRoute: typeof OportunidadesRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
   OrganizacoesIndexRoute: typeof OrganizacoesIndexRoute
@@ -104,11 +130,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/como-funciona': {
       id: '/como-funciona'
       path: '/como-funciona'
       fullPath: '/como-funciona'
       preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impacto': {
+      id: '/impacto'
+      path: '/impacto'
+      fullPath: '/impacto'
+      preLoaderRoute: typeof ImpactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/oportunidades': {
@@ -137,7 +177,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
+  ImpactoRoute: ImpactoRoute,
   OportunidadesRoute: OportunidadesRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
   OrganizacoesIndexRoute: OrganizacoesIndexRoute,
