@@ -14,16 +14,282 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      causes: {
+        Row: {
+          description: string | null
+          icon: string
+          name: string
+          slug: string
+          sort_order: number
+        }
+        Insert: {
+          description?: string | null
+          icon?: string
+          name: string
+          slug: string
+          sort_order?: number
+        }
+        Update: {
+          description?: string | null
+          icon?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      organizations: {
+        Row: {
+          causes: string[]
+          city: string | null
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          description: string | null
+          document: string | null
+          founded_year: number | null
+          id: string
+          instagram: string | null
+          logo_url: string | null
+          mission: string | null
+          name: string
+          owner_id: string
+          slug: string
+          state: string | null
+          updated_at: string
+          verified: boolean
+          website: string | null
+        }
+        Insert: {
+          causes?: string[]
+          city?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          description?: string | null
+          document?: string | null
+          founded_year?: number | null
+          id?: string
+          instagram?: string | null
+          logo_url?: string | null
+          mission?: string | null
+          name: string
+          owner_id: string
+          slug: string
+          state?: string | null
+          updated_at?: string
+          verified?: boolean
+          website?: string | null
+        }
+        Update: {
+          causes?: string[]
+          city?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          description?: string | null
+          document?: string | null
+          founded_year?: number | null
+          id?: string
+          instagram?: string | null
+          logo_url?: string | null
+          mission?: string | null
+          name?: string
+          owner_id?: string
+          slug?: string
+          state?: string | null
+          updated_at?: string
+          verified?: boolean
+          website?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          city: string | null
+          created_at: string
+          full_name: string
+          id: string
+          phone: string | null
+          state: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          phone?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string | null
+          created_at: string
+          id: string
+          is_demo: boolean
+          name: string
+          photo_url: string | null
+          role: string
+          sort_order: number
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          is_demo?: boolean
+          name: string
+          photo_url?: string | null
+          role: string
+          sort_order?: number
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          is_demo?: boolean
+          name?: string
+          photo_url?: string | null
+          role?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      visit_photos: {
+        Row: {
+          caption: string | null
+          city: string | null
+          created_at: string
+          id: string
+          image_url: string
+          is_demo: boolean
+          org_name: string | null
+          sort_order: number
+          state: string | null
+          title: string
+          visit_date: string | null
+        }
+        Insert: {
+          caption?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          image_url: string
+          is_demo?: boolean
+          org_name?: string | null
+          sort_order?: number
+          state?: string | null
+          title: string
+          visit_date?: string | null
+        }
+        Update: {
+          caption?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          is_demo?: boolean
+          org_name?: string | null
+          sort_order?: number
+          state?: string | null
+          title?: string
+          visit_date?: string | null
+        }
+        Relationships: []
+      }
+      volunteer_profiles: {
+        Row: {
+          availability: string[]
+          birth_date: string | null
+          created_at: string
+          experience: string | null
+          hours_per_week: number | null
+          interests: string[]
+          modality: string
+          skills: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          availability?: string[]
+          birth_date?: string | null
+          created_at?: string
+          experience?: string | null
+          hours_per_week?: number | null
+          interests?: string[]
+          modality?: string
+          skills?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          availability?: string[]
+          birth_date?: string | null
+          created_at?: string
+          experience?: string | null
+          hours_per_week?: number | null
+          interests?: string[]
+          modality?: string
+          skills?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "volunteer" | "organization" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +416,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["volunteer", "organization", "admin"],
+    },
   },
 } as const
