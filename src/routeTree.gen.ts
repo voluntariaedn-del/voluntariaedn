@@ -14,8 +14,13 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ImpactoRouteImport } from './routes/impacto'
 import { Route as OportunidadesRouteImport } from './routes/oportunidades'
+import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
 import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
+import { Route as PainelIndexRouteImport } from './routes/painel.index'
+import { Route as PainelAdminRouteImport } from './routes/painel.admin'
+import { Route as PainelOrganizacaoRouteImport } from './routes/painel.organizacao'
+import { Route as PainelVoluntarioRouteImport } from './routes/painel.voluntario'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +47,11 @@ const OportunidadesRoute = OportunidadesRouteImport.update({
   path: '/oportunidades',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuemSomosRoute = QuemSomosRouteImport.update({
+  id: '/quem-somos',
+  path: '/quem-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrganizacoesIndexRoute = OrganizacoesIndexRouteImport.update({
   id: '/organizacoes/',
   path: '/organizacoes/',
@@ -52,6 +62,26 @@ const OrganizacoesSlugRoute = OrganizacoesSlugRouteImport.update({
   path: '/organizacoes/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PainelIndexRoute = PainelIndexRouteImport.update({
+  id: '/painel/',
+  path: '/painel/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelAdminRoute = PainelAdminRouteImport.update({
+  id: '/painel/admin',
+  path: '/painel/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelOrganizacaoRoute = PainelOrganizacaoRouteImport.update({
+  id: '/painel/organizacao',
+  path: '/painel/organizacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelVoluntarioRoute = PainelVoluntarioRouteImport.update({
+  id: '/painel/voluntario',
+  path: '/painel/voluntario',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +89,13 @@ export interface FileRoutesByFullPath {
   '/como-funciona': typeof ComoFuncionaRoute
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/painel/admin': typeof PainelAdminRoute
+  '/painel/organizacao': typeof PainelOrganizacaoRoute
+  '/painel/voluntario': typeof PainelVoluntarioRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
+  '/painel/': typeof PainelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +103,13 @@ export interface FileRoutesByTo {
   '/como-funciona': typeof ComoFuncionaRoute
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/painel/admin': typeof PainelAdminRoute
+  '/painel/organizacao': typeof PainelOrganizacaoRoute
+  '/painel/voluntario': typeof PainelVoluntarioRoute
   '/organizacoes': typeof OrganizacoesIndexRoute
+  '/painel': typeof PainelIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +118,13 @@ export interface FileRoutesById {
   '/como-funciona': typeof ComoFuncionaRoute
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
+  '/painel/admin': typeof PainelAdminRoute
+  '/painel/organizacao': typeof PainelOrganizacaoRoute
+  '/painel/voluntario': typeof PainelVoluntarioRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
+  '/painel/': typeof PainelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +134,13 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/impacto'
     | '/oportunidades'
+    | '/quem-somos'
     | '/organizacoes/$slug'
+    | '/painel/admin'
+    | '/painel/organizacao'
+    | '/painel/voluntario'
     | '/organizacoes/'
+    | '/painel/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +148,13 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/impacto'
     | '/oportunidades'
+    | '/quem-somos'
     | '/organizacoes/$slug'
+    | '/painel/admin'
+    | '/painel/organizacao'
+    | '/painel/voluntario'
     | '/organizacoes'
+    | '/painel'
   id:
     | '__root__'
     | '/'
@@ -107,8 +162,13 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/impacto'
     | '/oportunidades'
+    | '/quem-somos'
     | '/organizacoes/$slug'
+    | '/painel/admin'
+    | '/painel/organizacao'
+    | '/painel/voluntario'
     | '/organizacoes/'
+    | '/painel/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +177,13 @@ export interface RootRouteChildren {
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   ImpactoRoute: typeof ImpactoRoute
   OportunidadesRoute: typeof OportunidadesRoute
+  QuemSomosRoute: typeof QuemSomosRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
+  PainelAdminRoute: typeof PainelAdminRoute
+  PainelOrganizacaoRoute: typeof PainelOrganizacaoRoute
+  PainelVoluntarioRoute: typeof PainelVoluntarioRoute
   OrganizacoesIndexRoute: typeof OrganizacoesIndexRoute
+  PainelIndexRoute: typeof PainelIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OportunidadesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quem-somos': {
+      id: '/quem-somos'
+      path: '/quem-somos'
+      fullPath: '/quem-somos'
+      preLoaderRoute: typeof QuemSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/organizacoes/': {
       id: '/organizacoes/'
       path: '/organizacoes'
@@ -172,6 +244,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizacoesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/painel/': {
+      id: '/painel/'
+      path: '/painel'
+      fullPath: '/painel/'
+      preLoaderRoute: typeof PainelIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel/admin': {
+      id: '/painel/admin'
+      path: '/painel/admin'
+      fullPath: '/painel/admin'
+      preLoaderRoute: typeof PainelAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel/organizacao': {
+      id: '/painel/organizacao'
+      path: '/painel/organizacao'
+      fullPath: '/painel/organizacao'
+      preLoaderRoute: typeof PainelOrganizacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel/voluntario': {
+      id: '/painel/voluntario'
+      path: '/painel/voluntario'
+      fullPath: '/painel/voluntario'
+      preLoaderRoute: typeof PainelVoluntarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
   ComoFuncionaRoute: ComoFuncionaRoute,
   ImpactoRoute: ImpactoRoute,
   OportunidadesRoute: OportunidadesRoute,
+  QuemSomosRoute: QuemSomosRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
+  PainelAdminRoute: PainelAdminRoute,
+  PainelOrganizacaoRoute: PainelOrganizacaoRoute,
+  PainelVoluntarioRoute: PainelVoluntarioRoute,
   OrganizacoesIndexRoute: OrganizacoesIndexRoute,
+  PainelIndexRoute: PainelIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
