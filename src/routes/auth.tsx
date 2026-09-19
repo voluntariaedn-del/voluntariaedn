@@ -72,15 +72,24 @@ function AuthPage() {
   }, [loading, user, navigate]);
 
   function trocarModo(next: Modo) {
-    navigate({ to: "/auth", search: { modo: next, tipo }, replace: true });
+    const search: AuthSearch = tipo ? { modo: next, tipo } : { modo: next };
+    navigate({ to: "/auth", search, replace: true });
   }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.includes("@")) return toast.error("Informe um e-mail válido.");
-    if (senha.length < 6) return toast.error("A senha precisa ter ao menos 6 caracteres.");
-    if (modo === "cadastro" && nome.trim().length < 3)
-      return toast.error("Informe seu nome completo.");
+    if (!email.includes("@")) {
+      toast.error("Informe um e-mail válido.");
+      return;
+    }
+    if (senha.length < 6) {
+      toast.error("A senha precisa ter ao menos 6 caracteres.");
+      return;
+    }
+    if (modo === "cadastro" && nome.trim().length < 3) {
+      toast.error("Informe seu nome completo.");
+      return;
+    }
 
     setEnviando(true);
     try {
