@@ -8,7 +8,7 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!loading && !user) {
-      navigate({ to: "/auth", search: { modo: "entrar", tipo: undefined }, replace: true });
+      navigate({ to: "/auth", search: { modo: "entrar" }, replace: true });
     }
   }, [loading, user, navigate]);
 

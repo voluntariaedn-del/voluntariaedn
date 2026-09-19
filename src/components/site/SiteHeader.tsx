@@ -26,7 +26,7 @@ export function SiteHeader() {
     queryClient.clear();
     await supabase.auth.signOut();
     setOpen(false);
-    navigate({ to: "/auth", replace: true });
+    navigate({ to: "/auth", search: { modo: "entrar" }, replace: true });
   }
 
   return (
