@@ -17,9 +17,9 @@ export function PageHeader({
   title,
   description,
 }: {
-  eyebrow?: string;
+  eyebrow?: string | undefined;
   title: string;
-  description?: string;
+  description?: string | undefined;
 }) {
   return (
     <section className="surface-gradient border-b border-border">

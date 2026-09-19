@@ -12,14 +12,14 @@ import { Label } from "@/components/ui/label";
 type Modo = "entrar" | "cadastro";
 type Tipo = "voluntario" | "organizacao";
 
+type AuthSearch = { modo: Modo; tipo?: Tipo };
+
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    modo: (search.modo === "cadastro" ? "cadastro" : "entrar") as Modo,
-    tipo:
-      search.tipo === "organizacao" || search.tipo === "voluntario"
-        ? (search.tipo as Tipo)
-        : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): AuthSearch => {
+    const modo: Modo = search["modo"] === "cadastro" ? "cadastro" : "entrar";
+    const tipo = search["tipo"];
+    return tipo === "organizacao" || tipo === "voluntario" ? { modo, tipo } : { modo };
+  },
   head: () => ({
     meta: [
       { title: "Entrar ou criar conta — VoluntarIA" },

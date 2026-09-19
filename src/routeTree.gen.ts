@@ -15,12 +15,14 @@ import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ImpactoRouteImport } from './routes/impacto'
 import { Route as OportunidadesRouteImport } from './routes/oportunidades'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as OrganizacaoEditarRouteImport } from './routes/organizacao.editar'
 import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
 import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
 import { Route as PainelIndexRouteImport } from './routes/painel.index'
 import { Route as PainelAdminRouteImport } from './routes/painel.admin'
 import { Route as PainelOrganizacaoRouteImport } from './routes/painel.organizacao'
 import { Route as PainelVoluntarioRouteImport } from './routes/painel.voluntario'
+import { Route as PerfilEditarRouteImport } from './routes/perfil.editar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,6 +52,11 @@ const OportunidadesRoute = OportunidadesRouteImport.update({
 const QuemSomosRoute = QuemSomosRouteImport.update({
   id: '/quem-somos',
   path: '/quem-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizacaoEditarRoute = OrganizacaoEditarRouteImport.update({
+  id: '/organizacao/editar',
+  path: '/organizacao/editar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrganizacoesIndexRoute = OrganizacoesIndexRouteImport.update({
@@ -82,6 +89,11 @@ const PainelVoluntarioRoute = PainelVoluntarioRouteImport.update({
   path: '/painel/voluntario',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PerfilEditarRoute = PerfilEditarRouteImport.update({
+  id: '/perfil/editar',
+  path: '/perfil/editar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -90,10 +102,12 @@ export interface FileRoutesByFullPath {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
+  '/perfil/editar': typeof PerfilEditarRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
   '/painel/': typeof PainelIndexRoute
 }
@@ -104,10 +118,12 @@ export interface FileRoutesByTo {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
+  '/perfil/editar': typeof PerfilEditarRoute
   '/organizacoes': typeof OrganizacoesIndexRoute
   '/painel': typeof PainelIndexRoute
 }
@@ -119,10 +135,12 @@ export interface FileRoutesById {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
+  '/perfil/editar': typeof PerfilEditarRoute
   '/organizacoes/': typeof OrganizacoesIndexRoute
   '/painel/': typeof PainelIndexRoute
 }
@@ -135,10 +153,12 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
     | '/painel/organizacao'
     | '/painel/voluntario'
+    | '/perfil/editar'
     | '/organizacoes/'
     | '/painel/'
   fileRoutesByTo: FileRoutesByTo
@@ -149,10 +169,12 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
     | '/painel/organizacao'
     | '/painel/voluntario'
+    | '/perfil/editar'
     | '/organizacoes'
     | '/painel'
   id:
@@ -163,10 +185,12 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
     | '/painel/organizacao'
     | '/painel/voluntario'
+    | '/perfil/editar'
     | '/organizacoes/'
     | '/painel/'
   fileRoutesById: FileRoutesById
@@ -178,10 +202,12 @@ export interface RootRouteChildren {
   ImpactoRoute: typeof ImpactoRoute
   OportunidadesRoute: typeof OportunidadesRoute
   QuemSomosRoute: typeof QuemSomosRoute
+  OrganizacaoEditarRoute: typeof OrganizacaoEditarRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
   PainelAdminRoute: typeof PainelAdminRoute
   PainelOrganizacaoRoute: typeof PainelOrganizacaoRoute
   PainelVoluntarioRoute: typeof PainelVoluntarioRoute
+  PerfilEditarRoute: typeof PerfilEditarRoute
   OrganizacoesIndexRoute: typeof OrganizacoesIndexRoute
   PainelIndexRoute: typeof PainelIndexRoute
 }
@@ -230,6 +256,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuemSomosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organizacao/editar': {
+      id: '/organizacao/editar'
+      path: '/organizacao/editar'
+      fullPath: '/organizacao/editar'
+      preLoaderRoute: typeof OrganizacaoEditarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/organizacoes/': {
       id: '/organizacoes/'
       path: '/organizacoes'
@@ -272,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelVoluntarioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/perfil/editar': {
+      id: '/perfil/editar'
+      path: '/perfil/editar'
+      fullPath: '/perfil/editar'
+      preLoaderRoute: typeof PerfilEditarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -282,10 +322,12 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactoRoute: ImpactoRoute,
   OportunidadesRoute: OportunidadesRoute,
   QuemSomosRoute: QuemSomosRoute,
+  OrganizacaoEditarRoute: OrganizacaoEditarRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
   PainelAdminRoute: PainelAdminRoute,
   PainelOrganizacaoRoute: PainelOrganizacaoRoute,
   PainelVoluntarioRoute: PainelVoluntarioRoute,
+  PerfilEditarRoute: PerfilEditarRoute,
   OrganizacoesIndexRoute: OrganizacoesIndexRoute,
   PainelIndexRoute: PainelIndexRoute,
 }
