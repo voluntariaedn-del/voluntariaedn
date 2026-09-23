@@ -45,6 +45,9 @@ function traduzErro(message: string) {
   if (m.includes("already registered") || m.includes("already been registered"))
     return "Este e-mail já tem uma conta. Tente entrar.";
   if (m.includes("invalid login")) return "E-mail ou senha incorretos.";
+  if (m.includes("weak") || m.includes("pwned"))
+    return "Essa senha é fácil de adivinhar. Escolha uma senha mais forte.";
+  if (m.includes("invalid") && m.includes("email")) return "Informe um e-mail válido.";
   if (m.includes("password") && m.includes("6")) return "A senha precisa ter ao menos 6 caracteres.";
   if (m.includes("email not confirmed"))
     return "Confirme seu e-mail pelo link que enviamos antes de entrar.";
