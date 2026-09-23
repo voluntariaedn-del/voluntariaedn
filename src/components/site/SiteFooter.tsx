@@ -60,12 +60,20 @@ export function SiteFooter() {
           <h3 className="text-sm font-semibold">Participe</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>
-              <Link to="/auth" search={{ modo: "cadastro" }} className="hover:text-foreground">
+              <Link
+                to="/auth"
+                search={{ modo: "cadastro", tipo: "voluntario" }}
+                className="hover:text-foreground"
+              >
                 Quero ser voluntário
               </Link>
             </li>
             <li>
-              <Link to="/auth" search={{ modo: "cadastro" }} className="hover:text-foreground">
+              <Link
+                to="/auth"
+                search={{ modo: "cadastro", tipo: "organizacao" }}
+                className="hover:text-foreground"
+              >
                 Sou uma organização
               </Link>
             </li>
