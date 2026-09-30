@@ -21,6 +21,7 @@ import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.ind
 import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
 import { Route as PainelIndexRouteImport } from './routes/painel.index'
 import { Route as PainelAdminRouteImport } from './routes/painel.admin'
+import { Route as PainelOportunidadesRouteImport } from './routes/painel.oportunidades'
 import { Route as PainelOrganizacaoRouteImport } from './routes/painel.organizacao'
 import { Route as PainelVoluntarioRouteImport } from './routes/painel.voluntario'
 import { Route as PerfilEditarRouteImport } from './routes/perfil.editar'
@@ -85,6 +86,11 @@ const PainelAdminRoute = PainelAdminRouteImport.update({
   path: '/painel/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PainelOportunidadesRoute = PainelOportunidadesRouteImport.update({
+  id: '/painel/oportunidades',
+  path: '/painel/oportunidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PainelOrganizacaoRoute = PainelOrganizacaoRouteImport.update({
   id: '/painel/organizacao',
   path: '/painel/organizacao',
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
+  '/painel/oportunidades': typeof PainelOportunidadesRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
   '/perfil/editar': typeof PerfilEditarRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
+  '/painel/oportunidades': typeof PainelOportunidadesRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
   '/perfil/editar': typeof PerfilEditarRoute
@@ -147,6 +155,7 @@ export interface FileRoutesById {
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
+  '/painel/oportunidades': typeof PainelOportunidadesRoute
   '/painel/organizacao': typeof PainelOrganizacaoRoute
   '/painel/voluntario': typeof PainelVoluntarioRoute
   '/perfil/editar': typeof PerfilEditarRoute
@@ -166,6 +175,7 @@ export interface FileRouteTypes {
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
+    | '/painel/oportunidades'
     | '/painel/organizacao'
     | '/painel/voluntario'
     | '/perfil/editar'
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
+    | '/painel/oportunidades'
     | '/painel/organizacao'
     | '/painel/voluntario'
     | '/perfil/editar'
@@ -200,6 +211,7 @@ export interface FileRouteTypes {
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
+    | '/painel/oportunidades'
     | '/painel/organizacao'
     | '/painel/voluntario'
     | '/perfil/editar'
@@ -218,6 +230,7 @@ export interface RootRouteChildren {
   OrganizacaoEditarRoute: typeof OrganizacaoEditarRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
   PainelAdminRoute: typeof PainelAdminRoute
+  PainelOportunidadesRoute: typeof PainelOportunidadesRoute
   PainelOrganizacaoRoute: typeof PainelOrganizacaoRoute
   PainelVoluntarioRoute: typeof PainelVoluntarioRoute
   PerfilEditarRoute: typeof PerfilEditarRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/painel/oportunidades': {
+      id: '/painel/oportunidades'
+      path: '/painel/oportunidades'
+      fullPath: '/painel/oportunidades'
+      preLoaderRoute: typeof PainelOportunidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/painel/organizacao': {
       id: '/painel/organizacao'
       path: '/painel/organizacao'
@@ -346,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrganizacaoEditarRoute: OrganizacaoEditarRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
   PainelAdminRoute: PainelAdminRoute,
+  PainelOportunidadesRoute: PainelOportunidadesRoute,
   PainelOrganizacaoRoute: PainelOrganizacaoRoute,
   PainelVoluntarioRoute: PainelVoluntarioRoute,
   PerfilEditarRoute: PerfilEditarRoute,
