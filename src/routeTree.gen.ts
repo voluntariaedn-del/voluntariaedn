@@ -15,6 +15,7 @@ import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ImpactoRouteImport } from './routes/impacto'
 import { Route as OportunidadesRouteImport } from './routes/oportunidades'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as OportunidadeNovaRouteImport } from './routes/oportunidade.nova'
 import { Route as OrganizacaoEditarRouteImport } from './routes/organizacao.editar'
 import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
 import { Route as OrganizacoesSlugRouteImport } from './routes/organizacoes.$slug'
@@ -52,6 +53,11 @@ const OportunidadesRoute = OportunidadesRouteImport.update({
 const QuemSomosRoute = QuemSomosRouteImport.update({
   id: '/quem-somos',
   path: '/quem-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OportunidadeNovaRoute = OportunidadeNovaRouteImport.update({
+  id: '/oportunidade/nova',
+  path: '/oportunidade/nova',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrganizacaoEditarRoute = OrganizacaoEditarRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
   '/painel/admin': typeof PainelAdminRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
     | '/painel/admin'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   ImpactoRoute: typeof ImpactoRoute
   OportunidadesRoute: typeof OportunidadesRoute
   QuemSomosRoute: typeof QuemSomosRoute
+  OportunidadeNovaRoute: typeof OportunidadeNovaRoute
   OrganizacaoEditarRoute: typeof OrganizacaoEditarRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
   PainelAdminRoute: typeof PainelAdminRoute
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/quem-somos'
       fullPath: '/quem-somos'
       preLoaderRoute: typeof QuemSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/oportunidade/nova': {
+      id: '/oportunidade/nova'
+      path: '/oportunidade/nova'
+      fullPath: '/oportunidade/nova'
+      preLoaderRoute: typeof OportunidadeNovaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/organizacao/editar': {
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactoRoute: ImpactoRoute,
   OportunidadesRoute: OportunidadesRoute,
   QuemSomosRoute: QuemSomosRoute,
+  OportunidadeNovaRoute: OportunidadeNovaRoute,
   OrganizacaoEditarRoute: OrganizacaoEditarRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
   PainelAdminRoute: PainelAdminRoute,
