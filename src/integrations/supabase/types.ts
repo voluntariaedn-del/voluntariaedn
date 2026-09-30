@@ -14,6 +14,50 @@ export type Database = {
   }
   public: {
     Tables: {
+      applications: {
+        Row: {
+          availability: string | null
+          created_at: string
+          id: string
+          message: string
+          opportunity_id: string
+          org_reply: string | null
+          status: Database["public"]["Enums"]["application_status"]
+          updated_at: string
+          volunteer_id: string
+        }
+        Insert: {
+          availability?: string | null
+          created_at?: string
+          id?: string
+          message?: string
+          opportunity_id: string
+          org_reply?: string | null
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          volunteer_id: string
+        }
+        Update: {
+          availability?: string | null
+          created_at?: string
+          id?: string
+          message?: string
+          opportunity_id?: string
+          org_reply?: string | null
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          volunteer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       causes: {
         Row: {
           description: string | null
@@ -37,6 +81,74 @@ export type Database = {
           sort_order?: number
         }
         Relationships: []
+      }
+      opportunities: {
+        Row: {
+          cause: string | null
+          city: string | null
+          created_at: string
+          date: string | null
+          description: string
+          duration_hours: number | null
+          id: string
+          modality: string
+          organization_id: string
+          skills: string[]
+          slots: number
+          state: string | null
+          status: Database["public"]["Enums"]["opportunity_status"]
+          time: string | null
+          title: string
+          updated_at: string
+          urgency: string
+        }
+        Insert: {
+          cause?: string | null
+          city?: string | null
+          created_at?: string
+          date?: string | null
+          description?: string
+          duration_hours?: number | null
+          id?: string
+          modality?: string
+          organization_id: string
+          skills?: string[]
+          slots?: number
+          state?: string | null
+          status?: Database["public"]["Enums"]["opportunity_status"]
+          time?: string | null
+          title: string
+          updated_at?: string
+          urgency?: string
+        }
+        Update: {
+          cause?: string | null
+          city?: string | null
+          created_at?: string
+          date?: string | null
+          description?: string
+          duration_hours?: number | null
+          id?: string
+          modality?: string
+          organization_id?: string
+          skills?: string[]
+          slots?: number
+          state?: string | null
+          status?: Database["public"]["Enums"]["opportunity_status"]
+          time?: string | null
+          title?: string
+          updated_at?: string
+          urgency?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunities_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       organizations: {
         Row: {
@@ -290,6 +402,8 @@ export type Database = {
     }
     Enums: {
       app_role: "volunteer" | "organization" | "admin"
+      application_status: "pendente" | "aceita" | "recusada" | "contatada"
+      opportunity_status: "aberta" | "encerrada"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -418,6 +532,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["volunteer", "organization", "admin"],
+      application_status: ["pendente", "aceita", "recusada", "contatada"],
+      opportunity_status: ["aberta", "encerrada"],
     },
   },
 } as const
