@@ -15,6 +15,7 @@ import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ImpactoRouteImport } from './routes/impacto'
 import { Route as OportunidadesRouteImport } from './routes/oportunidades'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as OportunidadeNovaRouteImport } from './routes/oportunidade.nova'
 import { Route as OrganizacaoEditarRouteImport } from './routes/organizacao.editar'
 import { Route as OrganizacoesIndexRouteImport } from './routes/organizacoes.index'
@@ -54,6 +55,11 @@ const OportunidadesRoute = OportunidadesRouteImport.update({
 const QuemSomosRoute = QuemSomosRouteImport.update({
   id: '/quem-somos',
   path: '/quem-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OportunidadeNovaRoute = OportunidadeNovaRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/impacto': typeof ImpactoRoute
   '/oportunidades': typeof OportunidadesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/oportunidade/nova': typeof OportunidadeNovaRoute
   '/organizacao/editar': typeof OrganizacaoEditarRoute
   '/organizacoes/$slug': typeof OrganizacoesSlugRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/reset-password'
     | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/reset-password'
     | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/impacto'
     | '/oportunidades'
     | '/quem-somos'
+    | '/reset-password'
     | '/oportunidade/nova'
     | '/organizacao/editar'
     | '/organizacoes/$slug'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   ImpactoRoute: typeof ImpactoRoute
   OportunidadesRoute: typeof OportunidadesRoute
   QuemSomosRoute: typeof QuemSomosRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   OportunidadeNovaRoute: typeof OportunidadeNovaRoute
   OrganizacaoEditarRoute: typeof OrganizacaoEditarRoute
   OrganizacoesSlugRoute: typeof OrganizacoesSlugRoute
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/quem-somos'
       fullPath: '/quem-somos'
       preLoaderRoute: typeof QuemSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/oportunidade/nova': {
@@ -362,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactoRoute: ImpactoRoute,
   OportunidadesRoute: OportunidadesRoute,
   QuemSomosRoute: QuemSomosRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   OportunidadeNovaRoute: OportunidadeNovaRoute,
   OrganizacaoEditarRoute: OrganizacaoEditarRoute,
   OrganizacoesSlugRoute: OrganizacoesSlugRoute,
