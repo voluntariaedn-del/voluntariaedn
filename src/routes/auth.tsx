@@ -123,6 +123,26 @@ function AuthPage() {
     }
   }
 
+  async function recuperarSenha(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.includes("@")) {
+      toast.error("Informe um e-mail válido.");
+      return;
+    }
+    setEnviando(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+      if (error) throw error;
+      toast.success("Se o e-mail estiver cadastrado, você receberá o link em instantes.");
+    } catch (err) {
+      toast.error(traduzErro(err instanceof Error ? err.message : ""));
+    } finally {
+      setEnviando(false);
+    }
+  }
+
   async function entrarComGoogle() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
