@@ -9,14 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-type Modo = "entrar" | "cadastro";
+type Modo = "entrar" | "cadastro" | "recuperar";
 type Tipo = "voluntario" | "organizacao";
 
 type AuthSearch = { modo: Modo; tipo?: Tipo };
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => {
-    const modo: Modo = search["modo"] === "cadastro" ? "cadastro" : "entrar";
+    const m = search["modo"];
+    const modo: Modo = m === "cadastro" || m === "recuperar" ? m : "entrar";
     const tipo = search["tipo"];
     return tipo === "organizacao" || tipo === "voluntario" ? { modo, tipo } : { modo };
   },
