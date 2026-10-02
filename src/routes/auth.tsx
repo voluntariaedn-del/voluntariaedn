@@ -186,6 +186,38 @@ function AuthPage() {
             </button>
           </div>
 
+          {modo === "recuperar" ? (
+            <form onSubmit={recuperarSenha} className="mt-6 space-y-4">
+              <div className="space-y-1">
+                <h1 className="text-lg font-bold">Recuperar senha</h1>
+                <p className="text-sm text-muted-foreground">
+                  Informe seu e-mail e enviaremos um link para você definir uma nova senha.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email-rec">E-mail</Label>
+                <Input
+                  id="email-rec"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="voce@email.com"
+                  autoComplete="email"
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={enviando}>
+                {enviando ? "Aguarde..." : "Enviar link de recuperação"}
+              </Button>
+              <button
+                type="button"
+                onClick={() => trocarModo("entrar")}
+                className="w-full text-center text-sm text-primary underline"
+              >
+                Voltar para entrar
+              </button>
+            </form>
+          ) : (
+          <>
           <form onSubmit={submit} className="mt-6 space-y-4">
             {cadastro && (
               <>
@@ -242,7 +274,18 @@ function AuthPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="senha">Senha</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="senha">Senha</Label>
+                {!cadastro && (
+                  <button
+                    type="button"
+                    onClick={() => trocarModo("recuperar")}
+                    className="text-xs text-primary underline"
+                  >
+                    Esqueci minha senha
+                  </button>
+                )}
+              </div>
               <Input
                 id="senha"
                 type="password"
@@ -267,6 +310,8 @@ function AuthPage() {
           <Button variant="outline" className="w-full" onClick={entrarComGoogle}>
             Continuar com Google
           </Button>
+          </>
+          )}
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
             Ao continuar você concorda em usar a plataforma com responsabilidade.{" "}
