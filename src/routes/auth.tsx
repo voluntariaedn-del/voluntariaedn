@@ -274,18 +274,7 @@ function AuthPage() {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="senha">Senha</Label>
-                {!cadastro && (
-                  <button
-                    type="button"
-                    onClick={() => trocarModo("recuperar")}
-                    className="text-xs text-primary underline"
-                  >
-                    Esqueci minha senha
-                  </button>
-                )}
-              </div>
+              <Label htmlFor="senha">Senha</Label>
               <Input
                 id="senha"
                 type="password"
@@ -294,6 +283,15 @@ function AuthPage() {
                 placeholder="Mínimo de 6 caracteres"
                 autoComplete={cadastro ? "new-password" : "current-password"}
               />
+              {!cadastro && (
+                <button
+                  type="button"
+                  onClick={() => trocarModo("recuperar")}
+                  className="text-xs text-primary underline"
+                >
+                  Esqueci minha senha
+                </button>
+              )}
             </div>
 
             <Button type="submit" className="w-full" disabled={enviando}>
