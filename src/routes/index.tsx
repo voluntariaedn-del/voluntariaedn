@@ -130,7 +130,7 @@ function Home() {
                   <h3 className="truncate text-lg font-semibold">Arrecadação de alimentos</h3>
                   <p className="text-sm text-muted-foreground">Projeto Esperança</p>
                 </div>
-                <Badge className="shrink-0 bg-urgent-soft text-urgent-foreground hover:bg-urgent-soft">
+                <Badge className="shrink-0 bg-urgent-soft text-urgent hover:bg-urgent-soft">
                   Urgente
                 </Badge>
               </div>
