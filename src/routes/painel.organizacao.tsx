@@ -28,8 +28,6 @@ export const Route = createFileRoute("/painel/organizacao")({
 });
 
 const atalhos = [
-  { icon: ClipboardList, label: "Minhas oportunidades", desc: "Publicar e acompanhar vagas." },
-  { icon: Users, label: "Candidaturas recebidas", desc: "Aceitar ou recusar voluntários." },
   { icon: MessageSquare, label: "Mensagens", desc: "Conversas com os voluntários." },
   { icon: Clock, label: "Horas e ações", desc: "Confirmar participação e horas." },
 ];
@@ -151,7 +149,26 @@ function PainelOrganizacao() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <ClipboardList className="h-5 w-5 text-primary" />
+            <p className="mt-3 font-semibold">Publicar oportunidade</p>
+            <p className="mt-1 text-sm text-muted-foreground">Crie uma nova vaga de voluntariado.</p>
+            <Button asChild size="sm" className="mt-3">
+              <Link to="/oportunidade/nova">Nova oportunidade</Link>
+            </Button>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <Users className="h-5 w-5 text-primary" />
+            <p className="mt-3 font-semibold">Vagas e candidaturas</p>
+            <p className="mt-1 text-sm text-muted-foreground">Encerre vagas e aceite ou recuse voluntários.</p>
+            <Button asChild size="sm" variant="outline" className="mt-3">
+              <Link to="/painel/oportunidades">Gerenciar</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {atalhos.map((a) => (
             <div key={a.label} className="rounded-2xl border border-dashed border-border p-5">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-muted text-muted-foreground">

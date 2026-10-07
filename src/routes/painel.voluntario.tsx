@@ -4,6 +4,7 @@ import { PageHeader, PageShell } from "@/components/site/PageShell";
 import { RequireAuth } from "@/components/site/RequireAuth";
 import { useProfile, useSession, useVolunteerProfile } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
+import { formatarData, STATUS_CANDIDATURA, useMyApplications } from "@/lib/opportunities";
 
 export const Route = createFileRoute("/painel/voluntario")({
   head: () => ({
@@ -28,7 +29,6 @@ export const Route = createFileRoute("/painel/voluntario")({
 });
 
 const atalhos = [
-  { icon: ClipboardList, label: "Minhas candidaturas", desc: "Acompanhe os pedidos enviados." },
   { icon: CalendarDays, label: "Minha agenda", desc: "Datas e horários das ações." },
   { icon: MessageSquare, label: "Minhas mensagens", desc: "Conversas com as organizações." },
   { icon: Clock, label: "Minhas horas", desc: "Horas previstas e confirmadas." },
@@ -58,6 +58,7 @@ function Chips({ titulo, itens }: { titulo: string; itens: string[] }) {
 function PainelVoluntario() {
   const { user } = useSession();
   const { data: profile, isLoading: carregandoPerfil } = useProfile(user?.id);
+  const { data: candidaturas = [] } = useMyApplications(user?.id);
   const { data: vp } = useVolunteerProfile(user?.id);
 
   const local = [profile?.city, profile?.state].filter(Boolean).join(" — ");
@@ -134,7 +135,7 @@ function PainelVoluntario() {
                 </div>
                 <div className="flex justify-between">
                   <dt>Candidaturas</dt>
-                  <dd className="font-semibold text-foreground">0</dd>
+                  <dd className="font-semibold text-foreground">{candidaturas.length}</dd>
                 </div>
               </dl>
               <p className="mt-3 text-xs text-muted-foreground">
@@ -144,13 +145,65 @@ function PainelVoluntario() {
             <div className="rounded-2xl border border-border bg-card p-6">
               <p className="text-sm font-semibold">Encontrar formas de ajudar</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Veja as organizações já cadastradas na plataforma.
+                Veja as oportunidades abertas e as organizações cadastradas.
               </p>
-              <Button asChild variant="outline" size="sm" className="mt-3">
-                <Link to="/organizacoes">Ver organizações</Link>
-              </Button>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Button asChild size="sm">
+                  <Link to="/oportunidades">Ver oportunidades</Link>
+                </Button>
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/organizacoes">Ver organizações</Link>
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+          <div className="flex items-center gap-2">
+            <ClipboardList className="h-5 w-5 text-primary" />
+            <p className="text-lg font-semibold">Minhas candidaturas</p>
+          </div>
+          {candidaturas.length === 0 ? (
+            <p className="mt-3 text-sm text-muted-foreground">
+              Você ainda não se candidatou a nenhuma oportunidade.
+            </p>
+          ) : (
+            <ul className="mt-4 space-y-3">
+              {candidaturas.map((c) => {
+                const op = c.opportunities;
+                const org = op?.organizations;
+                const liberado = c.status === "aceita" || c.status === "contatada";
+                return (
+                  <li key={c.id} className="rounded-xl border border-border p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <p className="font-semibold">{op?.title ?? "Oportunidade"}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {org?.name ?? ""}
+                          {op?.date ? ` · ${formatarData(op.date)}` : ""}
+                          {op?.city ? ` · ${op.city}${op.state ? "/" + op.state : ""}` : ""}
+                        </p>
+                      </div>
+                      <span className="rounded-full bg-primary-soft px-3 py-1 text-xs font-medium">
+                        {STATUS_CANDIDATURA[c.status] ?? c.status}
+                      </span>
+                    </div>
+                    {c.org_reply && (
+                      <p className="mt-2 text-sm">Resposta da organização: {c.org_reply}</p>
+                    )}
+                    {liberado && org && (
+                      <div className="mt-3 rounded-lg bg-primary-soft p-3 text-sm">
+                        <p className="font-medium">Contato da organização</p>
+                        <p>E-mail: {org.contact_email || "não informado"}</p>
+                        <p>Telefone: {org.contact_phone || "não informado"}</p>
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
